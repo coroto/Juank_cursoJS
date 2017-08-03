@@ -24,14 +24,13 @@ function vaciarPapelera(array) {
     // ['a',1,5]
     console.warn(" -- Función vaciarPapelera");
     //for(i=0; i < array.length; i++){
-    for(i=array.length; i > 0; i --){
+    for(i=array.length; i >= 0; i --){
         if (array[i] == "*"){
             array.splice([i],1)
-            console.log("Hay un *");
+            // console.log("Hay un *");
         }
 
     }
-
     console.error("Mi array modificado " + array);
     return array;
     
@@ -55,13 +54,8 @@ function agruparElementos(array) {
             letras.push(array[i]);
         }
     }
-
-    console.log ("mis numeros " + numeros);
-    console.log ("mis Letras " + letras);
-
     array = numeros.concat(letras);
     console.error("Mi array modificado "+ array);
-
     array.sort();
     return array;
 }
@@ -105,40 +99,38 @@ function ponerBonitosLosNumeros(array) {
     // 793 se convertirá en 1 porque 7+9+3 = 19, 1+9 = 10 y 1+0 = 1
     // Este proceso debemos realizarlo sobre un array de elementos y aplicarlo solo a los números.
     console.warn(" -- Función ponerBonitosLosNumeros");
-    cadena = [];
-    for(i=0; i < array.length; i++){
-        if (typeof(array[i]) == "number"){
-            numero = array[i];
-            while (numero.toString().length > 1) {
+	var cadena = [];
+	for(i=0; i < array.length; i++){
+        var arreglo = array[i];
+		if(typeof(arreglo) == "number"){          
+			while (arreglo.toString().length > 1){
                 var suma = 0;
-                for(j=0; j < numero.length; j++){
-                    suma = suma + numero[j];
-
-
-                }
-                numero = suma;
+                var numero = arreglo.toString().split("");
+                for(j=0; j<numero.length; j++){
+                    suma= parseInt(numero[j])+suma;
+                   // suma= +numero[j]+suma;  // se antepone el + lo toma como numero
+                } 
+               arreglo = suma;
+               //console.log ("mi numero " + arreglo); 
             }
-
-        }else{
-            cadena.push(array[i]);  
-        }
-    }
-    console.error("Mi array modificado es " + cadena);
-    return cadena;
-
+			cadena.push(arreglo); 
+		}else{
+			//console.log("no es numero");
+			cadena.push(arreglo); 
+		}
+	}
+		console.error("Mi array modificado es " + cadena);
+	return cadena;
 }
 
 function arrayToString(array) {
     //Esta función debe recibir un array y devolver un string con todos sus elementos
     //Ejemplo: arrayToString([1, 4, 5, 5, 'A', 'b', 'E', 'j']) dee devolver "1455AbEj"
     console.warn(" -- Función arrayToString");
-    var cadena = "";
-    cadena = array.toString();
-    final = cadena.replace(',',"");
-
-    console.error("Mi cadena Modificada " + final);
-
-    return final;
+	string = array.join("");
+	//console.log(string);
+    console.error("Mi cadena Modificada " + string);
+    return string;
 }
 
 // Tests
@@ -153,9 +145,10 @@ function transformacionCompletaDelArray(array) {
     return array;
 }
 
-
-console.log(transformacionCompletaDelArray(["a", 6, "B", "F", "*", 8, 78, "J"]) === "668bfjA");
-//console.log(transformacionCompletaDelArray(["*", "j", 6, "A", "F", "*", 8, "C", "b", "a", 78, "J", 43523, 1111, "r", "q", "y"]) === "48668AcfjAbjqry");
+console.log (" TEST 1 === ['a', 6, B', 'F', '*', 8, 78, 9956, 'J']");
+console.log(transformacionCompletaDelArray(["a", 6, "B", "F", "*", 8, 78, 9956, "J"]) === "668bfjA");
+console.log (" TEST 2 === ['*', 'j', 6, 'A', 'F', '*', 8, 'C', 'b', 'a', 78, 'J', 43523, 1111, 'r', 'q', 'y']");
+console.log(transformacionCompletaDelArray(["*", "j", 6, "A", "F", "*", 8, "C", "b", "a", 78, "J", 43523, 1111, "r", "q", "y"]) === "48668AcfjAbjqry");
 
 
 //console.log(transformacionCompletaDelArray(["a", 6, "B", "F", "*", "*", 8, 78, "J"]) === "668Abfj");
