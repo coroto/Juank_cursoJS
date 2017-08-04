@@ -1,4 +1,5 @@
-var intervalID; var segundos = 0;
+var intervalID; 
+var segundos = 0;
 // Función que crea el timeout
 function crearIntervaloDeUnSegundo() {
 	intervalID = window.setInterval(imprimirAumentarTiempo, 1000);
