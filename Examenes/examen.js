@@ -100,17 +100,17 @@ biblioteca.agregarSecion(seccionNaturaleza);
 biblioteca.agregarSecion(seccionHistoria);
 biblioteca.agregarSecion(seccionViajes);
 
-biblioteca.agregarSocios(5);
+biblioteca.agregarSocios(1000);
 
 // var seccion  = new Seccion();
 // seccion.crearLibros
 
 
-seccionAmor.crearLibros();
-seccionAventuras.crearLibros(10);
-seccionNaturaleza.crearLibros(10);
-seccionHistoria.crearLibros(10);
-seccionViajes.crearLibros(10);
+seccionAmor.crearLibros(200);
+seccionAventuras.crearLibros(200);
+seccionNaturaleza.crearLibros(200);
+seccionHistoria.crearLibros(200);
+seccionViajes.crearLibros(200);
 
 console.log(biblioteca);
 
