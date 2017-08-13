@@ -91,7 +91,6 @@ class Utilidades{
 
 	static generarPaisAleatorio(){
 		let nombresPaises = ["Colombia", "Corea Norte", "EEUU", "Rusia", "Venezuela", "España", "China", "Iran", "Portugal", "Mexico", "Brasil"];
-		debugger;
 		let indice = this.generarNumeroAleatorioEntre(0, nombresPaises.length-1);
 		nombresPaises.splice(indice,1);
 	return nombresPaises[indice];
@@ -108,7 +107,7 @@ class Soldado{
 	}
 
 	ataca(soldado){
-		soldado._salud = soldado._salud - this._potenciaAtaque;
+		soldado._salud = soldado._salud - this._potenciaDeAtaque;
 	}
 }
 
@@ -185,34 +184,51 @@ class Guerra{
 
 	jornadaDeGuerra(){
 
+
+		// Ataca Ejercito 2
+		for (let i=0; i < this._ejercito2._soldados.length; i++){
+			let soldadoEj2 = this._ejercito2._soldados[i];
+			let objetivo = this.seleccionaObjetivo(this._ejercito1);
+
+			if (this._ejercito1._soldados.length > 0){
+				soldadoEj2.ataca(objetivo);
+				if (objetivo._salud <= 0){
+					this._ejercito1._bajas.push(objetivo);
+					var posicionObjetivo = this._ejercito1._soldados.indexOf(objetivo);
+					this._ejercito1._soldados.splice(posicionObjetivo,1);
+				}
+			}
+		}
+
+		//
+
 	// Ataca ejercito 1	
 		for (let i=0; i < this._ejercito1._soldados.length; i++){
 			let soldadoEj1 = this._ejercito1._soldados[i];
 			let objetivo = this.seleccionaObjetivo(this._ejercito2);
-			soldadoEj1.ataca(objetivo);
-			if (objetivo._salud <= 0){
-				this._ejercito2._bajas.push(objetivo);
-				var posicionObjetivo = this._ejercito2._soldados.indexOf(objetivo);
-				this._ejercito2._soldados.splice(posicionObjetivo,1);
+
+			if (this._ejercito2._soldados.length > 0){
+				soldadoEj1.ataca(objetivo);	
+				if (objetivo._salud <= 0){
+					this._ejercito2._bajas.push(objetivo);
+					var posicionObjetivo = this._ejercito2._soldados.indexOf(objetivo);
+					this._ejercito2._soldados.splice(posicionObjetivo,1);
+				}
 			}
 		}
 
-	// Ataca Ejercito 2
-		for (let i=0; i < this._ejercito2._soldados.length; i++){
-			let soldadoEj2 = this._ejercito2._soldados[i];
-			let objetivo = this.seleccionaObjetivo(this._ejercito1);
-			soldadoEj2.ataca(objetivo);
-			if (objetivo._salud <= 0){
-				this._ejercito1._bajas.push(objetivo);
-				var posicionObjetivo = this._ejercito1._soldados.indexOf(objetivo);
-				this._ejercito1._soldados.splice(posicionObjetivo,1);
-			}
-		}
+
 
 	}
 
-	seleccionaObjetivo(objetivo){
+	seleccionaObjetivo(ejercito){
 // busca en el array del ejercito contrario para traer el objetivo
+	// let nombresSoldados = ["Bryan", "Spartacus", "Cesar", "Ospina", "Colón", "Crisus", "Hulk", "Capitan America", "Batman", "Maradona", "Pele"];
+	// let indice = Utilidades.generarNumeroAleatorioEntre(0, nombresSoldados.length-1);
+	// return nombresSoldados[indice];
+
+	let indice = Utilidades.generarNumeroAleatorioEntre(0, ejercito._soldados.length-1);
+	return ejercito._soldados[indice];
 
 	}
 }
@@ -224,22 +240,25 @@ var ejercito2 = new Ejercito();
 
 window.onload=function(){
 let guerra = new Guerra(ejercito1, ejercito2);
-console.error("Inicia la guerra");
+console.log("Inicia la guerra");
 	IDInterval = window.setInterval(function(){
-		if (ejercito1._bajas.length == 1000 ||  ejercito1._bajas.length == 1000)
+		if (ejercito1._bajas.length == 1000 ||  ejercito2._bajas.length == 1000){
 			clearInterval(IDInterval);  
-		else
+		}
+		else{
 			guerra._numeroJornadastrans ++;
 			guerra.iniciarGuerra();
+
 			console.log ("numero de jornadas transcurriadas :" + guerra._numeroJornadastrans);
 			console.log ("Soldados Vivos Ejercito 1: " + ejercito1._soldados.length);
-			console.log ("Soldados Vivos Ejercito 2: "+ ejercito1._soldados.length);
+			console.log ("Soldados Vivos Ejercito 2: "+ ejercito2._soldados.length);
 			console.log ("Bajas ejercito1: " + ejercito1._bajas.length);
-			console.log ("Bajas ejercito2: " + ejercito1._bajas.length);
+			console.log ("Bajas ejercito2: " + ejercito2._bajas.length);
+		}
 	}, 1000);
 }
 
-// detengo el interval clearInterval(IDInterval)
+// detengo el interval clearInterval(IDInterval).
 
 
 
