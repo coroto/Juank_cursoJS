@@ -79,7 +79,6 @@ Utilidades.prototype.generarTematicaAleatoria = function (){
 	return tematica[indice];
 }
 
-
 Utilidades.prototype.generarNombreAleatorio = function(){
 	var nombreSocios = ["Carlos ", "Daniel ", "Fabian ", "Juan Carlos ", "Bryan ", "Saul ", "Christian ", "Marcel ", "Ronal ", "David ", "Fran "];
 	var indice = this.generarNumeroAleatorioEntre(0, nombreSocios.length-1);
@@ -97,7 +96,6 @@ Utilidades.prototype.generarAutorAleatorio = function(){
 	var indice = this.generarNumeroAleatorioEntre(0, autores.length-1);
 	return autores[indice];
 }
-
 
 function Biblioteca (nombre){
 	this._nombre = nombre;
@@ -132,7 +130,6 @@ Biblioteca.prototype.addLibro = function(indiceLibros){
     libroAleatorio = new Libro(indiceLibros);
     var seccion = this.buscarSeccion(libroAleatorio._tematica);
     seccion._libros.push(libroAleatorio);
-
 }
 
 Biblioteca.prototype.buscarSeccion = function(nombreSeccion) {
@@ -166,9 +163,7 @@ Biblioteca.prototype.devolverLibro = function(libro){
 Biblioteca.prototype.ejecutarCiclo = function(){
 	for (var i=0; i < this._socios.length; i++){
 		var socio = this._socios[i];
-		socio.ejecutarCicloSocio();
-		//console.log("NO he fallado");
-		
+		socio.ejecutarCicloSocio(this);	
 	}
 }
 
@@ -218,31 +213,20 @@ function Socio(numeroSocio){
 	this._libros = [];
 }
 
-// 6) Añade el método ejecutarCiclo() dentro de un socio
-// En cada ciclo un socio dejará los libros que tenía alquilados y cogerá varios (aleatorio entre 1-3) de forma aleatoria.
-// Para coger libros deberá hacer uso de una funcion de Biblioteca llamada dameLibroAleatorio();
-// Para dejar libros deberá hacer uso de una función de Biblioteca llamada devolverLibro(libro);
-
-Socio.prototype.ejecutarCicloSocio = function(){
+Socio.prototype.ejecutarCicloSocio = function(miBiblioteca){
 	var utilidades = new Utilidades();
 
 	for (var i = this._libros.length-1; i >= 0; i--){
 		var libroSocio = this._libros[i];
-		biblioteca.devolverLibro(libroSocio);
+		miBiblioteca.devolverLibro(libroSocio);
 		this._libros.splice(i,1);
 	}
 
-
 	var numeroDeLibrosATomar = utilidades.generarNumeroAleatorioEntre(1, 3);
 	for (var i=0; i < numeroDeLibrosATomar; i++){
-		var libro = biblioteca.dameLibroAleatorio();
+		var libro = miBiblioteca.dameLibroAleatorio();
 		this._libros.push(libro);
 	}
-	
-	
-
-//dameLibroAleatorio	
-//devolverLibro
 }
 
 var biblioteca = new Biblioteca("Biblioteca Publica BBVA");
@@ -252,13 +236,3 @@ IDInterval = window.setInterval(function(){
 	biblioteca.ejecutarCiclo();
 	biblioteca.imprimirEstado();
 }, 2000);
-
-
-
-
-
-//biblioteca.inicializar();
-//console.log(biblioteca);
-
-
-
