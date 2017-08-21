@@ -6,7 +6,12 @@ class PokemonApiClient{
 
 	getPokemonsAtPage(pagina){	
 		
-		let completeUrl = this._baseUrl + pagina;
+		let offset = (pagina - 1) * 20;
+        //let completeUrl = `${this._baseUrl}/?offset=${offset}`;
+        let completeUrl = this._baseUrl + offset;
+        console.log(completeUrl);
+
+		//let completeUrl = this._baseUrl + pagina;
 		let promise = this._apiClient.get(completeUrl, null);
 
 		let anotherPromise = promise.then((data) =>{
@@ -28,9 +33,18 @@ class PokemonApiClient{
 		return anotherPromise;
 	}
 
-
-
 	getPokemonByUrl(url){
-
+		let promise = this._apiClient.get(url, null);
+		var anotherPromise = promise.then((data)=>{
+			let pokemon = new Pokemon(
+					data.name, 
+					data.urlDePokemon,					
+					data.weight,
+					data.height,
+					data.sprites.front_default
+			);
+			return pokemon;
+		});
+		return anotherPromise;
 	}
 }

@@ -17,7 +17,7 @@ class MainController{
 		this._pokemonApiClient = new PokemonApiClient(this._apiClient);
 		this._pokedex = new Pokedex(this);
 
-		this._paginaActual = 0;
+		this._paginaActual = 1;
 	}
 
 	paginaSiguiente(){
@@ -26,12 +26,13 @@ class MainController{
 	}
 	paginaAnterior(){
 
-		this._paginaActual = this._paginaActual - 1;
-
-		if (this._paginaActual < 1){
+		if (this._paginaActual <= 1){
 			this._paginaActual = 1;
+		}else{
+			this._paginaActual = this._paginaActual - 1;
 		}
 
+		console.warn(this._paginaActual);
 		this.verPokemones();
 
 	}
@@ -184,12 +185,15 @@ class Pokedex{
 
 
 		this._contenedorHtml.innerHTML  = estructura;
+
+		let botonAnterior = this._contenedorHtml.querySelector("#anterior");
+		 botonAnterior.addEventListener("click", () => this._mainController.paginaAnterior());
+		 
 		let botonSiguiente = this._contenedorHtml.querySelector("#siguiente");
 		botonSiguiente.addEventListener("click", () => this._mainController.paginaSiguiente());
 
 		// this._contenedorHtml.innerHTML  = estructura;
-		// let botonAnterior = this._contenedorHtml.querySelector("#anterior");
-		// botonAnterior.addEventListener("click", () => this._mainController.paginaAnterior());
+		 
 	}
 
 }
