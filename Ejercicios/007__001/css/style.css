@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Oswald');
+
+header {
+	background-color: #282828;
+	border-bottom:  3px solid #e43d00;
+	margin: 0px;
+}
+
+
+
+body{
+	margin: 0px;
+}
+
+.contenedor{
+	margin-right: 100px; 
+	margin-left: 100px;
+	background-image: url("../images/commentsbg.jpg");
+	margin-top: 0px;
+	/*padding: 32px 40px 32px 40px;*/
+	padding-top: 32px;
+
+}
+
+.secciones{
+	margin:0px 40px 0px 40px;
+}
+
+.noticias{
+	margin:0px 40px 0px 40px;	
+}
+
+.publicidad{
+	margin: 0px 40px 40px 40px;
+}
+img.publicidad{
+	width: 100%;
+}
+
+
+ul.menu{
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+ul.menu li{
+	margin: 0;
+	float: left;
+	width: 25%;
+	display: inline-block;
+	background-color: #f3f3f3;
+    border-bottom: 4px solid #d4d4d4;
+    box-shadow: inset -1px 0px 0px 0px #d4d4d4;
+    text-align: center;
+    padding: 10px 0px;
+    font-size: .8125em;
+    font-family: Oswald,sans-serif;
+    color: #858585;
+    cursor: pointer;
+}
+
+section.noticias{
+	background-color: white;
+	margin-bottom: 15px;
+}
+
+.publicaciones{
+	background-color: white;
+	margin-bottom: 20px;
+}
+
+ul.menu li:last-child{
+	box-shadow: none;
+}
+
+ul.noticias li{
+	list-style-image: url("../images/arrow.png");
+	font-family: Merriweather Sans,sans-serif;
+	font-size: .85em;
+	color: #5d5d5d;		
+	cursor: pointer;
+	margin-bottom: 5px;
+}
+
+
+
+
+
+
+footer {
+	background-color: #282828;
+	border-bottom:  3px solid #e43d00;
+	margin: 0px;
+}
+
+.informacion{
+	/*display: inline-block;
+	width: 31.5%; 
+	
+	
+	float: left; 
+	*/
+	margin-left: 3%; 
+	margin-right: 3%;
+	margin-top: 20px; 
+}
+
+/*
+.imagenInformacion{
+	display: inline-block;
+	width: 60%;
+}*/
+
+a.leermas{
+	color: #e43d00;
+    font-style: italic;
+}
+h1.titulo{
+	margin:0px;
+	color: #e43d00;
+	font-family: Oswald,sans-serif;
+	font-size: 1.375em;
+	margin-bottom: 20px;
+}
+
+h2.titulo{
+	color: #6d6d6d;
+	font-family: Oswald,sans-serif;
+	font-size: 14px;
+	border-bottom: 1px solid #d4d4d4;
+	padding: 5px 0px;
+}
+
+p.informacioParrafo{
+    color: #5d5d5d;	
+    font-family: Merriweather Sans,sans-serif;
+    font-size: .8125em;
+    margin-bottom: 30px;
+}
+
+
+
+
+.masLeido{
+	min-height: 400px;
+	background-color: blue;
+}
+
+
+.imgCien{
+	width: 100%;
+}
+
+.publicaciones{
+	padding: 20px 20px 20px 20px;
+}
+
+.ultimos{
+	margin-bottom: 20px;
+}
+
+.ultimos:last-child{
+	margin-bottom: none;
+}
+
+/* display inline block*/

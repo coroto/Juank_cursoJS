@@ -1,0 +1,48 @@
+.pista{
+	/*min-height: 500px;*/
+	background-color: white;
+	}
+
+.resultados{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+/*
+table {
+  margin: 15px;
+  padding: 15px;
+}
+
+table th {background-color: yellow; }*/
+
+
+table { font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    	font-size: 12px;    
+    	margin: 45px 300px;     
+    	width: 480px; 
+    	text-align: left;    
+    	border-collapse: collapse; 
+    	table
+}
+
+th { font-size: 13px;     
+	font-weight: normal;     
+	padding: 8px;     
+	background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    
+    border-bottom: 1px solid #fff; 
+    color: #039; 
+}
+
+td { padding: 8px;     
+	background: #e8edff;     
+	border-bottom: 1px solid #fff;
+    color: #669;    
+    border-top: 1px solid transparent; 
+}
+
+img{height: 75px; 
+	width: 200px;
+
+}

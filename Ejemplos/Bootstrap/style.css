@@ -1,0 +1,14 @@
+.bloque1{
+	background: red;
+	min-height: 400px;
+}
+
+.bloque2{
+	background: blue;
+	min-height: 400px;
+}
+
+.bloque3{
+	background: green;
+	min-height: 400px;
+}
