@@ -18,12 +18,19 @@ class NavigationController{
 		}
 
 		if (!paginaSolicitada) {
-				console.error("Recurso Solicitado NO Disponible");
+			console.error("Recurso Solicitado NO Disponible");
 		}else{
+			window.history.pushState(null, paginaSolicitada._titulo, paginaSolicitada._url);
 			paginaSolicitada.pintarPagina();
 		}
+	}
 
+	getMenuLinks(){
+		// devuelvo solo las que estaEnMenu == true
+		let elementosFiltrados = this._paginas.filter((elemento) => {
+			return (elemento._estaEnMenu == true);
+		});
 
-		window.history.pushState(null, paginaSolicitada._titulo, paginaSolicitada._url);
+		return elementosFiltrados;
 	}
 }

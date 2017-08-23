@@ -1,86 +1,121 @@
-class ApiClient{
-	constructor(){
+class ApiClient {
+    constructor() {
 
-	}
+    }
 
-	get (url, data){
-		let headers = new Headers();
-		headers.append("Content-Type", "application/json");
+    get(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
 
-		let config = {
-	    	method: "GET",
-	    	headers: headers
-		};
+        let config = {
+            method: "GET",
+            headers: headers
+        };
 
-		let promise = fetch(url, config).then((response)=>{
-			return response.json();
-		});
+        if (data) {
+            let jsonData = JSON.stringify(data);
+            config.body = jsonData;
+        }
 
-		return promise;
-	}
+        let miPromesa = new Promise((resolve, reject) => {
+            fetch(url, config).then((response) => {
+                response.json().then((data) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                });
+            });
+        });
 
-	post (url, data){
-		let headers = new Headers();
-		headers.append("Content-Type", "application/json");
+        return miPromesa;
+    }
 
-		let config = {
-	    	method: "POST",
-	    	headers: headers
-		};
+    post(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
 
-		if(data){
-			let jsonData = JSON.stringify(data);
-			config.body = jsonData;
-		}
+        let config = {
+            method: "POST",
+            headers: headers
+        };
 
-		let promise = fetch(url, config).then((response)=>{
-			if (response.status >= 200 && response.status < 300){
-				return response.json();
-			}else{
-				return Promise.reject("ERROR");
-			}
-			
-		});
+        if (data) {
+            let jsonData = JSON.stringify(data);
+            config.body = jsonData;
+        }
 
-		return promise;
-	}
+        let miPromesa = new Promise((resolve, reject) => {
+            fetch(url, config).then((response) => {
+                response.json().then((data) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                });
+            });
+        });
 
-	put (url, data){
-		let headers = new Headers();
-		headers.append("Content-Type", "application/json");
+        return miPromesa;
+    }
 
-		let config = {
-	    	method: "PUT",
-	    	headers: headers
-		};
+    put(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
 
-		if(data){
-			let jsonData = JSON.stringify(data);
-			config.body = jsonData;
-		}
-		
+        let config = {
+            method: "PUT",
+            headers: headers
+        };
 
+        if (data) {
+            let jsonData = JSON.stringify(data);
+            config.body = jsonData;
+        }
 
-		let promise = fetch(url, config).then((response)=>{
-			return response.json();
-		});
+        let miPromesa = new Promise((resolve, reject) => {
+            fetch(url, config).then((response) => {
+                response.json().then((data) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                });
+            });
+        });
 
-		return promise;
-	}
+        return miPromesa;
+    }
 
-	delete (url, data){
-		let headers = new Headers();
-		headers.append("Content-Type", "application/json");
+    delete(url, data) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
 
-		let config = {
-	    	method: "DELETE",
-	    	headers: headers
-		};
+        let config = {
+            method: "DELETE",
+            headers: headers
+        };
 
-		let promise = fetch(url, config).then((response)=>{
-			return response.text();
-		});
+        if (data) {
+            let jsonData = JSON.stringify(data);
+            config.body = jsonData;
+        }
 
-		return promise;
-	}
+        let miPromesa = new Promise((resolve, reject) => {
+            fetch(url, config).then((response) => {
+                response.json().then((data) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        resolve(data);
+                    } else {
+                        reject(data);
+                    }
+                });
+            });
+        });
+
+        return miPromesa;
+    }
 }

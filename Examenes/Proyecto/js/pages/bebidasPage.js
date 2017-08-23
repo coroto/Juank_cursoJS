@@ -1,4 +1,4 @@
-class HomePage extends InnerPage{
+class BebidasPage extends InnerPage{
 	constructor(titulo, url, autentica, estaEnMenu){
 		super(titulo, url, autentica, estaEnMenu);
 		this._navegatorController = null;
@@ -9,8 +9,8 @@ class HomePage extends InnerPage{
 		
 		let divContendor = document.createElement("div");
 		let contenido = `
-		<h1> Este es mi Home </h1>
-		`;
+		<h1> Pagina Bebidas </h1>
+		`
 		divContendor.innerHTML = (contenido);
 		document.body.appendChild(divContendor); 
 		this.pintarFooter();
