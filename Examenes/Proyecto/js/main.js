@@ -23,7 +23,7 @@ class Main{
 		let bebidasPages = new BebidasPage("Gestión de Bebidas", "#bebidas", true, true);
 	    this._navController.addPagina(bebidasPages);
 
-		let usuarioPage = new UsuarioPage("Información Usuario", "#usuario", true, true);
+		let usuarioPage = new UsuarioPage("Información Usuario", "#usuario", true, true, this._userController);
 		this._navController.addPagina(usuarioPage);
 
 		this._navController.navegarUrl("#login");

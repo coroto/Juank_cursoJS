@@ -17,7 +17,7 @@ class CrearCuenta extends Page{
 	      		<input type="text" class="form-control" name="apellidos" id="apellidos" placeholder="Apellidos" required=""/>   
 	      		<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required=""/>   
 	      		<input type="text" class="form-control" name="username" id="username" placeholder="Nombre Usuario" required=""/>  
-	      		<input type="password" class="form-control" name="password" id="password" placeholder="Constraseña" required=""/>  
+	      		<input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" required=""/>  
 	      		<span id="mensaje"></span>
 	       		<button class="btn btn-lg btn-success btn-block" type="button" id="crear">Terminado</button>   
     		</form>
@@ -26,7 +26,7 @@ class CrearCuenta extends Page{
 		document.body.innerHTML = (estructura);
 
 		let botonCrear = document.body.querySelector("#crear");
-		botonCrear.addEventListener("click", () => this.crearUsuario())
+		botonCrear.addEventListener("click", () => this.crearUsuario());
 	}
 
 	crearUsuario(){

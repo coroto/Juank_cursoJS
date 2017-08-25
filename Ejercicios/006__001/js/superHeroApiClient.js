@@ -87,3 +87,16 @@ class SuperHeroApiClient{
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

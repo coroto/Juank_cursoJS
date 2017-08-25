@@ -16,14 +16,14 @@ class InnerPage extends Page {
 	                <div class="navbar-header">
 	                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 	                        <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
-	                    </button>
-	                    <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
+	                    </button>                    
+	                	<a class="navbar-brand" href="#"></a> 	
 	                </div>
 	                <div class="navbar-collapse collapse">
 	                    <ul id="ul-menu" class="nav navbar-nav">
 	                    	<!-- aqui van los enlaces del menu -->
 	                    	<li>
-    							<a href="#login" data-link="#login" class="smoothScroll boton-menu">Salir</a>
+    							<a href="#login" data-link="#login" id="logOut"class="smoothScroll">Salir</a>
     						</li>
 	                    </ul>
 	                </div>
@@ -57,6 +57,13 @@ class InnerPage extends Page {
                 this._navigatorController.navegarUrl(href);
             });
         });
+
+       	let aCerrar = document.body.querySelector("#logOut");
+		aCerrar.addEventListener("click", () => {
+			SesionController.cerrarSesion("user");
+			this._navigatorController.navegarUrl("#login");
+		});
+
     }
 
     pintarFooter() {

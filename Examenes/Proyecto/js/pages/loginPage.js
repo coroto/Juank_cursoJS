@@ -28,21 +28,47 @@ class LoginPage extends Page{
 		//this._contenedorHtml.innerHTML  = estructura;
 
 		let botonIniciar = document.body.querySelector("#iniciarSesion");
-		botonIniciar.addEventListener("click", () => this.validarSesion());
+		botonIniciar.addEventListener("click", () => this.login());
 
 		let botonCrearCuenta = document.body.querySelector("#crearCuenta");
 		botonCrearCuenta.addEventListener("click", () => {
-		    this._navigatorController.navegarUrl("#cuenta")
+		    this._navigatorController.navegarUrl("#cuenta");
 		});
+
+
+
+		let userInLocalStorage = this._userController.getUserLocalStorage();
+		if(userInLocalStorage != null){
+			let promise = this._userController.login(userInLocalStorage._username, userInLocalStorage._password, true);
+			promise.then((data) =>{
+				this._navigatorController.navegarUrl("#home");
+			}).catch((e) =>{
+				let error = e.message;
+				let mensajeData = "Por favor Validar: " + error;
+				let mensaje = document.body.querySelector("#mensaje");
+				mensaje.innerHTML = mensajeData;
+				//localStorage.removeItem("user");
+				this._userController.cerrarSesion();
+				console.error(e.message);
+			});
+		}
+
 	}
 
-	validarSesion(){
+	login(){
+
+		this._userController.getUserLocalStorage();
 		let username = document.getElementById("username").value;
 		let password = document.getElementById("password").value;
+		let sesion = rememberMe.checked;
 
-		let promise = this._userController.validarSesion(username, password);
+
+		let promise = this._userController.login(username, password, sesion);
 		promise.then((data) =>{
 			this._navigatorController.navegarUrl("#home");
+
+			console.log("usuario " + data._username);
+			console.log("id " +data._id);
 		}).catch((e) =>{
 			let error = e.message;
 			let mensajeData = "Por favor Validar: " + error;
